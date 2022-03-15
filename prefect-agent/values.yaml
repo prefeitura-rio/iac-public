@@ -26,7 +26,7 @@ agent:
   # jobTemplateFilePath defines which template to use for the agent's jobs. Defaults
   # to an empty string, which will use the default template.
   # reference: https://docs.prefect.io/orchestration/agents/kubernetes.html#custom-job-template
-  jobTemplateFilePath: ""
+  jobTemplateFilePath: "https://storage.googleapis.com/datario-public/prefect-job-templates/job_template.yaml"
 
   # The Apollo GraphQL URL to use for the agent. Defaults to the
   # Apollo service (must have either Apollo or Istion setup)
