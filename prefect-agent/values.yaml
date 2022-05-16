@@ -30,7 +30,15 @@ agent:
 
   # The Apollo GraphQL URL to use for the agent. Defaults to the
   # Apollo service (must have either Apollo or Istion setup)
-  apollo_url: "http://prefect-apollo-datario:4200/"
+  apollo_url: "https://prefect.dados.rio/"
+
+  # If using Prefect Server as backend, set this to true
+  prefect_backend_server: false
+
+  # For Prefect Cloud, one must provide the auth.toml file (that's usually located at
+  # $HOME/.prefect/auth.toml) in a secret for the agent to mount. Provide the name of
+  # the secret here.
+  auth_secret_name: "prefect-auth-toml"
 
   # job configures values associated with jobs the agent launches
   job:
