@@ -8,20 +8,20 @@ variable "bucket_name" {
 
 variable "region" {
   description = "The GCP region to use for the cluster."
-  default     = "southamerica-east1"
+  default     = "us-central1"
 }
 
 variable "zone" {
   description = "The GCP zone to use for the cluster."
-  default     = "southamerica-east1-c"
+  default     = "us-central1-c"
 }
 
-variable "machine_type" {
-  description = "The machine type to use for the cluster's main pool."
-  default     = "custom-4-8192"
+variable "shared_vpc_host_project" {
+  description = "The ID of the host project which hosts the shared VPC"
+  default     = "datario"
 }
 
-variable "preemptible_nodes" {
-  description = "Should cluster's main pool nodes be preemptible"
-  default     = false
+variable "shared_vpc_subnet_name" {
+  description = "The name of the subnet to use for the shared VPC"
+  default     = "sub-us-iplan"
 }

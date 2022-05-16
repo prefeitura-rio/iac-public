@@ -24,40 +24,16 @@ provider "google" {
 }
 
 resource "google_container_cluster" "primary" {
-  name                     = "${var.project_id}-gke"
-  location                 = var.zone
-  remove_default_node_pool = true
-  initial_node_count       = 1
-  workload_identity_config {
-    identity_namespace = "${var.project_id}.svc.id.goog"
+  name             = "${var.project_id}-gke"
+  location         = var.region
+  enable_autopilot = true
+
+  network    = "projects/${var.shared_vpc_host_project}/global/networks/vpc-vpn-iplan-us"
+  subnetwork = "projects/${var.shared_vpc_host_project}/regions/${var.region}/subnetworks/${var.shared_vpc_subnet_name}"
+  ip_allocation_policy {
+    cluster_secondary_range_name  = "gke-rj-sme-pods"
+    services_secondary_range_name = "gke-rj-sme-services"
   }
-}
 
-resource "google_container_node_pool" "primary_preemptible_nodes" {
-  name       = "${var.project_id}-pool-main"
-  location   = var.zone
-  cluster    = google_container_cluster.primary.name
-  node_count = 1
-  node_config {
-    machine_type = var.machine_type
-    preemptible  = var.preemptible_nodes
-  }
-}
-
-resource "google_container_node_pool" "prod_autoscale_node_pool" {
-  name       = "${var.project_id}-pool-dynamic"
-  location   = var.zone
-  cluster    = google_container_cluster.primary.name
-  node_count = 0
-
-  # autoscaling {
-  #     min_node_count = 0
-  #     max_node_count = 2
-  # }
-
-  node_config {
-    preemptible  = true
-    machine_type = "e2-small"
-    disk_size_gb = "100"
-  }
+  networking_mode = "VPC_NATIVE"
 }
