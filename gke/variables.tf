@@ -25,3 +25,8 @@ variable "shared_vpc_subnet_name" {
   description = "The name of the subnet to use for the shared VPC"
   default     = "sub-us-iplan"
 }
+
+variable "machine_type" {
+  description = "The machine type to use for the cluster's main pool."
+  default     = "custom-2-3072"
+}
