@@ -30,7 +30,7 @@ agent:
 
   # The Apollo GraphQL URL to use for the agent. Defaults to the
   # Apollo service (must have either Apollo or Istion setup)
-  apollo_url: "https://prefect.dados.rio/"
+  apollo_url: "http://localhost:4200/"
 
   # If using Prefect Server as backend, set this to true
   prefect_backend_server: false
